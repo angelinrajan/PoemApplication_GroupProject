@@ -1,0 +1,32 @@
+header {
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+hr {
+    width: 45%;
+
+}
+h1 {
+    font-weight: 700;
+}
+body {
+    background-color: rgba(239, 234, 163, 0.505);
+}
+main {
+    text-align: center;
+}
+
+p {
+    width: 40%;
+    margin: 0 auto;
+}
+footer {
+    text-align: end;
+    margin-top: 32px;
+}
+footer > p {
+    opacity: 50%;
+    position: absolute;
+    right: 0px;
+}
