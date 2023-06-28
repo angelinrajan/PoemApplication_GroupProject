@@ -1,5 +1,37 @@
 # PoemApplication_GroupProject
 
+## A fully functional front-end project written in vs code to help users gain ability to to search their favorite poems & better understand the poetry.
+This Project that was built to make it able for poetry readers to be able to search up their favorite peoms & find the definition of certain words to better understand the  structure of the art. All in the midst of remaining on the same cite, this can save a ton of time especially if the Users has multiple poems in mind that he/she wants to review.
+
+
+
+
+* Use a CSS framework other than Bootstrap.
+
+
+* Be interactive (i.e., accept and respond to user input).
+
+
+* Use at least two [server-side APIs](https://coding-boot-camp.github.io/full-stack/apis/api-resources).
+
+
+* Does not use alerts, confirms, or prompts (use modals).
+
+
+* Use client-side storage to store persistent data.
+
+
+* Be responsive.
+
+
+* Have a polished UI.54252
+
+
+* Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
+
+
+## user story
+
 Rough breakdown of tasks:
 1 page application
 Possible – 2nd searchbox for definition on the other side of the page to look up words (IF HIGHLIGHT DOESN’t WORK)
