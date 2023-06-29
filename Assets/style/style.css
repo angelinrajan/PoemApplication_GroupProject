@@ -30,3 +30,48 @@ footer > p {
     position: absolute;
     right: 0px;
 }
+
+/*style for header*/
+
+
+
+h1 {
+  color: #333;
+  font-size: 28px;
+}
+#searchForm {
+  margin-top: 20px;
+  border: 10px solid black;
+  padding:20px;
+  
+}
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  
+}
+input[type="text"],
+button {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+button[type="submit"],
+button[type="button"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin-left: 10px;
+}
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #555;
+}
+ 
+#searchForm label{
+    display: inline-block;
+
+}
