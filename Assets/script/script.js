@@ -1,7 +1,5 @@
 
-baseUrl = 'https://poetrydb.org'
 
-requesturl = 'https://poetrydb.org';
 
 var randompoem = document.querySelector('#Random');
 var poemParagraph = document.querySelector('#poemParagraph');
@@ -11,6 +9,7 @@ var poemTitle = document.querySelector('#poemTitle');
 
 function getPoem(search, select) {
     //Add inputs to modify base URL
+    var  baseUrl = 'https://poetrydb.org'
     baseUrl += `/${select}/${search}`
     console.log(baseUrl) //should output (for example) https://poetrydb.org/author/authorName
     fetch(baseUrl)
