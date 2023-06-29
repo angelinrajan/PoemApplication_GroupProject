@@ -2,17 +2,16 @@
 baseUrl = 'https://poetrydb.org'
 
 requesturl = 'https://poetrydb.org';
-var selectField = "author"
-var searchTerm = "William Shakespeare"
+
 var randompoem = document.querySelector('#Random');
 var poemParagraph = document.querySelector('#poemParagraph');
 var poetName = document.querySelector('#poemAuthor');
 var poemTitle = document.querySelector('#poemTitle');
 
 
-function getPoem(searchTerm, selectField) {
+function getPoem(search, select) {
     //Add inputs to modify base URL
-    baseUrl += `/${selectField}/${searchTerm}`
+    baseUrl += `/${select}/${search}`
     console.log(baseUrl) //should output (for example) https://poetrydb.org/author/authorName
     fetch(baseUrl)
         .then(function (response) {
@@ -21,18 +20,21 @@ function getPoem(searchTerm, selectField) {
         .then(function (data) {
             console.log(data)
             console.log(data[0].lines)
-            document.querySelector("p").textContent = data[0].lines;
-            document.querySelector('h2').textContent = data[0].title;
-            document.querySelector('span').textContent = data[0].author;
+            poemParagraph.textContent = data[0].lines;
+            poemTitle.textContent = data[0].title;
+            poetName.textContent = data[0].author;
 })  
 }
 
 
 //Add event listener to button, function passes form info to API call function
-document.querySelector('button').addEventListener('click', function() {
+document.getElementById("searchForm").addEventListener('submit', function(e) {
     //CHANGE THIS TO REFLECT THE FORM
+    console.log('hi')
+    e.preventDefault();
     var searchTerm = document.querySelector('input[type=text]').value;
     var selectField = document.querySelector('input[type=radio]:checked').value;
+
     getPoem(searchTerm, selectField)
 })
 // getPoem()
@@ -74,5 +76,5 @@ function randomP() {
 
 
 //getPoem()
-randompoem.addEventListener("click", randomP);
+document.getElementById("randomButton").addEventListener("click", randomP);
 
