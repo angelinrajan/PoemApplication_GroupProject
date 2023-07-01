@@ -10,50 +10,66 @@
 
 <body>
     <header>
-        
+
         <h1>Poem Dictionary App</h1>
         <form id="searchForm">
-            <input type="text" id="searchInput" placeholder="Poet, or title of Poem"> 
+            <input type="text" id="searchInput" placeholder="Poet, or title of Poem">
             <label><input type="radio" name="searchType" value="author">Poet </label>
             <label><input type="radio" name="searchType" value="title">Poem </label>
-           
+
             <input type="submit" value="submit" id="submitButton">
             <button type="button" id="randomButton">Random</button>
         </form>
-        
+
     </header>
 
     <main>
         <div class="poem">
-            
-            <div>
+            <div class="highlight-menu">
+                <aside>
+                    <form id="wordSearch">
+                        <label id="wordLabel">Enter word below for Definition:</label><br>
+                        <input type="text" id="wordInput" placeholder="Type Word here"><br>
+                        <button type="button" id="wordSubmitBtn">Submit</button>
+                        <p id="definitionDisplay"></p>
+                    </form>
+                </aside>
+            </div>
+            <div class="titleInfo">
                 <h2 id="poemTitle">Poem Name</h2>
                 <span id="poemAuthor">- Author</span>
             </div>
             <hr>
-            <p id="poemParagraph">
+            <p id="poemParagraph" class="selection:bg-fuchsia-300 selection:text-fuchsia-900">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nulla dolor, viverra eget urna
-                hendrerit, consectetur luctus risus. Aenean id odio interdum, viverra augue sit amet, pretium orci. Maecenas
+                hendrerit, consectetur luctus risus. Aenean id odio interdum, viverra augue sit amet, pretium orci.
+                Maecenas
                 maximus nunc felis, ut finibus nibh cursus et. Orci varius natoque penatibus et magnis dis parturient
-                montes, nascetur ridiculus mus. Aenean consectetur interdum ligula sit amet sodales. Cras blandit arcu ut
-                orci elementum, sed accumsan mauris tempus. Proin quis tellus ac libero dictum posuere vitae ut felis. Etiam
+                montes, nascetur ridiculus mus. Aenean consectetur interdum ligula sit amet sodales. Cras blandit arcu
+                ut
+                orci elementum, sed accumsan mauris tempus. Proin quis tellus ac libero dictum posuere vitae ut felis.
+                Etiam
                 eget varius urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    
-                Nulla aliquet nibh eu mauris lobortis sagittis ut vel nisl. In hac habitasse platea dictumst. Duis gravida
-                nulla eros, nec congue magna sollicitudin et. Morbi sollicitudin suscipit pharetra. Curabitur rutrum nibh
-                eget pellentesque vulputate. Ut varius est sit amet lorem lacinia, sed efficitur tortor pretium. In accumsan
+
+                Nulla aliquet nibh eu mauris lobortis sagittis ut vel nisl. In hac habitasse platea dictumst. Duis
+                gravida
+                nulla eros, nec congue magna sollicitudin et. Morbi sollicitudin suscipit pharetra. Curabitur rutrum
+                nibh
+                eget pellentesque vulputate. Ut varius est sit amet lorem lacinia, sed efficitur tortor pretium. In
+                accumsan
                 venenatis neque, ut tincidunt lectus dignissim eget. Duis feugiat vulputate nunc at consectetur. In hac
                 habitasse platea dictumst. In consequat ullamcorper dignissim. Fusce finibus neque in dapibus accumsan.
                 Suspendisse lorem enim, imperdiet id scelerisque vitae, aliquam at eros.
-    
-                Nam tempus eu felis cursus laoreet. Nunc volutpat massa nec pulvinar blandit. Nulla sagittis aliquam sapien,
+
+                Nam tempus eu felis cursus laoreet. Nunc volutpat massa nec pulvinar blandit. Nulla sagittis aliquam
+                sapien,
                 vitae vulputate mi rutrum in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
                 cubilia curae; Donec gravida egestas purus ac pellentesque. Sed dignissim vel sapien ut maximus. Aenean
                 vestibulum interdum felis, eu lacinia tortor consectetur eget. Aenean lacinia viverra dapibus. Curabitur
                 sodales quam ornare semper convallis. Sed vel tellus et arcu euismod aliquet sit amet ut turpis.
             </p>
         </div>
-        <div class="highlight-menu"></div>
+
     </main>
     <footer>
         <p>Definitions provided by <i>A DICTIONARY</i></p>

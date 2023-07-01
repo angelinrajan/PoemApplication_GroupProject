@@ -1,10 +1,11 @@
-
-
-
+requesturl = 'https://poetrydb.org';
+dictionaryUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en';
+var inputWord = document.querySelector('#wordInput');
 var randompoem = document.querySelector('#Random');
 var poemParagraph = document.querySelector('#poemParagraph');
 var poetName = document.querySelector('#poemAuthor');
 var poemTitle = document.querySelector('#poemTitle');
+var textDisplay = document.querySelector('#definitionDisplay');
 
 
 function getPoem(search, select) {
@@ -22,6 +23,10 @@ function getPoem(search, select) {
             poemParagraph.textContent = data[0].lines;
             poemTitle.textContent = data[0].title;
             poetName.textContent = data[0].author;
+            var pTitle = poemTitle.textContent;
+            //var aName = poetName.textContent;
+            localStorage.setItem("Poem Title", pTitle);
+          //localStorage.setItem(aName, pTitle);
 })  
 }
 
@@ -39,19 +44,40 @@ document.getElementById("searchForm").addEventListener('submit', function(e) {
 // getPoem()
 
 //FOR LATER
+var submitWord = function(event) {
+    event.preventDefault();
+    console.log("Hello");
+    var wordsearch = inputWord.value.trim();
 
-function getDefinition() {
+    if (wordsearch) {
+        getDefinition(wordsearch);
+
+       // wordsearch.value = '';
+        console.log(wordsearch);
+
+    }
+};
+
+var getDefinition = function (word) {
+    var dictionaryapi = dictionaryUrl + '/' + word;
     //Defines word
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${highlightedWord}`)
+    fetch(dictionaryapi)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
             console.log(data)
+            if (data !== 200) {
+                textDisplay.textContent = "Sorry, Definition unavailable at the moment! Try another word..."
+            }
             console.log(data[0].meanings[0].definitions[0])
+            var deftext = textDisplay;
+            deftext.textContent = (data[0].meanings[0].definitions[0].definition);
+            console.log(deftext);
+            
         })
 
-}
+};
 
 function randomP() {
     var rpoemUrl = requesturl + '/random';
@@ -74,6 +100,7 @@ function randomP() {
 
 
 
-//getPoem()
+
 document.getElementById("randomButton").addEventListener("click", randomP);
 
+document.getElementById("wordSubmitBtn").addEventListener("click", submitWord);
