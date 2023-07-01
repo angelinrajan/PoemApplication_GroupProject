@@ -75,3 +75,22 @@ button[type="button"]:hover {
     display: inline-block;
 
 }
+.highlight-menu {
+   display: flex;
+   flex-wrap: wrap;
+   width: 20%;
+   max-width: 150px;
+}
+
+.titleInfo {
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: 0 auto;
+}
+#wordSearch {
+  margin: 2px;
+}
+#wordSubmitBtn {
+  margin-top: 5px;
+}
