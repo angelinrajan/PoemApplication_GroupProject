@@ -23,11 +23,41 @@ function getPoem(search, select) {
         .then(function (data) {
             console.log(data)
             console.log(data[0].lines)
-            poemParagraph.textContent = data[0].lines;
-            poemTitle.textContent = data[0].title;
+             poemTitle.textContent = data[0].title;
             poetName.textContent = data[0].author;
-})  
+            
+  })  
 }
+
+function displayPoem(object) {
+    poemTitle.textContent = object[0].title;
+    poetName.textContent = object[0].author;
+    poemParagraph.textContent = object[0].lines
+    poemParagraph.textContent = data[0].lines;
+    // save the data of the first poem from the api response
+    var poemData = data[0];
+    // check if the entered author matches any author from api
+   
+    if(select ==="author"){
+    removeTextFunction(data[0].author)
+        
+    }else{
+        // if the search type is not author, update the poem title and author name normally
+        poemParagraph.textContent = poemData.lines;
+        poetName.textContent = poemData.author;
+    }
+   };  
+
+    //store the api response data in local storage
+  
+
+
+function clearPage() {
+    poemTitle.textContent = '';
+    poetName.textContent = '';
+    poemParagraph.textContent = ''
+}
+
 
 function displayPoem(object) {
     poemTitle.textContent = object[0].title;
@@ -44,11 +74,18 @@ function clearPage() {
 document.getElementById("searchForm").addEventListener('submit', function(e) {
     //CHANGE THIS TO REFLECT THE FORM
     e.preventDefault();
-    var searchTerm = document.querySelector('input[type=text]').value;
-    var selectField = document.querySelector('input[type=radio]:checked').value;
+     // check if the selected search type is author 
+     // if it is , sets content of paragraph with id of "poemParagraph" to an empty string
+     var searchType = document.querySelector('input[name="searchType"]:checked').value;
+    
+        var searchTerm = document.querySelector('input[type=text]').value;
+        var selectField = document.querySelector('input[type=radio]:checked').value;
 
-    getPoem(searchTerm, selectField)
+        getPoem(searchTerm, selectField)
+     
+    
 })
+
 // getPoem()
 
 //FOR LATER
@@ -119,4 +156,18 @@ poemParagraph.addEventListener('dblclick', function(){
     var selObj = window.getSelection()
     getDefinition(selObj)
     console.log(selObj)
-})
+})// clear content function
+            function removeTextFunction(authorName) {
+            poemParagraph.textContent = "";
+        // check if the entered input matches any author from the api response
+              poemTitle.textContent = authorName;
+              poetName.textContent = "";
+    
+    // check if the entered input matches any author from the api response
+         
+ }
+
+  function getList(){
+    
+  }
+ 
