@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="dist/popover.min.css" />
+
     <link rel="stylesheet" href="./Assets/style/style.css">
 </head>
 
@@ -40,7 +43,8 @@
                 <span id="poemAuthor">- Author</span>
             </div>
             <hr>
-            <p id="poemParagraph" class="selection:bg-fuchsia-300 selection:text-fuchsia-900">
+            <p id="poemParagraph" class="popover-demo" data-popover-target="#popover-target">
+
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nulla dolor, viverra eget urna
                 hendrerit, consectetur luctus risus. Aenean id odio interdum, viverra augue sit amet, pretium orci.
                 Maecenas
@@ -70,10 +74,17 @@
             </p>
         </div>
 
+        <div id="popover-target">
+            <div class="pop-comp-content">ayo</div>
+        </div>
+
     </main>
     <footer>
         <p>Definitions provided by <i>A DICTIONARY</i></p>
     </footer>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <script src="dist/popover.min.js"></script>
+
     <script src="./Assets/script/script.js"></script>
 </body>
 

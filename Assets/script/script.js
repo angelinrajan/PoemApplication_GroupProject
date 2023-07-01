@@ -7,15 +7,18 @@ var poetName = document.querySelector('#poemAuthor');
 var poemTitle = document.querySelector('#poemTitle');
 var textDisplay = document.querySelector('#definitionDisplay');
 
+// getLocalStorage()
 
 function getPoem(search, select) {
     //Add inputs to modify base URL
     var  baseUrl = 'https://poetrydb.org'
     baseUrl += `/${select}/${search}`
-    console.log(baseUrl) //should output (for example) https://poetrydb.org/author/authorName
+    // console.log(baseUrl) //should output (for example) https://poetrydb.org/author/authorName
     fetch(baseUrl)
         .then(function (response) {
-            return response.json()
+            if (response.status === 200) {
+                return response.json()
+            }
         })
         .then(function (data) {
             console.log(data)
@@ -23,18 +26,23 @@ function getPoem(search, select) {
             poemParagraph.textContent = data[0].lines;
             poemTitle.textContent = data[0].title;
             poetName.textContent = data[0].author;
-            var pTitle = poemTitle.textContent;
-            //var aName = poetName.textContent;
-            localStorage.setItem("Poem Title", pTitle);
-          //localStorage.setItem(aName, pTitle);
 })  
 }
 
+function displayPoem(object) {
+    poemTitle.textContent = object[0].title;
+    poetName.textContent = object[0].author;
+    poemParagraph.textContent = object[0].lines
+}
+function clearPage() {
+    poemTitle.textContent = '';
+    poetName.textContent = '';
+    poemParagraph.textContent = ''
+}
 
 //Add event listener to button, function passes form info to API call function
 document.getElementById("searchForm").addEventListener('submit', function(e) {
     //CHANGE THIS TO REFLECT THE FORM
-    console.log('hi')
     e.preventDefault();
     var searchTerm = document.querySelector('input[type=text]').value;
     var selectField = document.querySelector('input[type=radio]:checked').value;
@@ -66,7 +74,6 @@ var getDefinition = function (word) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data)
             if (data !== 200) {
                 textDisplay.textContent = "Sorry, Definition unavailable at the moment! Try another word..."
             }
@@ -75,24 +82,27 @@ var getDefinition = function (word) {
             deftext.textContent = (data[0].meanings[0].definitions[0].definition);
             console.log(deftext);
             
+            
         })
 
 };
 
 function randomP() {
-    var rpoemUrl = requesturl + '/random';
+   
+    var rpoemUrl = requestUrl + '/random';
     fetch(rpoemUrl)
         .then(function (response) {
             if (response.status === 200) {
-                console.log(response);
+                // console.log(response);
                 return response.json()
 
                     .then(function (data) {
-                        console.log(data)
-                        console.log(data[0].lines)
+                        // console.log(data)
+                        // console.log(data[0].lines)
                         poemParagraph.textContent = data[0].lines
                         poetName.textContent = data[0].author
                         poemTitle.textContent = data[0].title
+                        localStorage.setItem("title", data[0].title)
                     });
             }
 })
@@ -104,3 +114,9 @@ function randomP() {
 document.getElementById("randomButton").addEventListener("click", randomP);
 
 document.getElementById("wordSubmitBtn").addEventListener("click", submitWord);
+
+poemParagraph.addEventListener('dblclick', function(){ 
+    var selObj = window.getSelection()
+    getDefinition(selObj)
+    console.log(selObj)
+})
