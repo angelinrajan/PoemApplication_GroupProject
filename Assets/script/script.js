@@ -74,8 +74,14 @@ var getDefinition = function (word) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data)
-            console.log(data[0].meanings[0].definitions[0].definition)
+            if (data !== 200) {
+                textDisplay.textContent = "Sorry, Definition unavailable at the moment! Try another word..."
+            }
+            console.log(data[0].meanings[0].definitions[0])
+            var deftext = textDisplay;
+            deftext.textContent = (data[0].meanings[0].definitions[0].definition);
+            console.log(deftext);
+            
             
         })
 
