@@ -1,4 +1,4 @@
-requesturl = 'https://poetrydb.org';
+requestUrl = 'https://poetrydb.org';
 dictionaryUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en';
 var inputWord = document.querySelector('#wordInput');
 var randompoem = document.querySelector('#Random');
@@ -6,7 +6,7 @@ var poemParagraph = document.querySelector('#poemParagraph');
 var poetName = document.querySelector('#poemAuthor');
 var poemTitle = document.querySelector('#poemTitle');
 var textDisplay = document.querySelector('#definitionDisplay');
-
+var linkList
 // getLocalStorage()
 
 function getPoem(search, select) {
@@ -25,28 +25,29 @@ function getPoem(search, select) {
             console.log(data[0].lines)
              poemTitle.textContent = data[0].title;
             poetName.textContent = data[0].author;
-            
-  })  
-}
+             if(select ==="author"){
+             removeTextFunction(data[0].author)
+             getList(data)
+             linkList = data;
+             }else{
+        // if the search type is not author, update the poem title and author name normally
+            displayPoem(data)
+    }
+   });  
+}  
+
 
 function displayPoem(object) {
     poemTitle.textContent = object[0].title;
     poetName.textContent = object[0].author;
     poemParagraph.textContent = object[0].lines
-    poemParagraph.textContent = data[0].lines;
+
     // save the data of the first poem from the api response
-    var poemData = data[0];
+    
     // check if the entered author matches any author from api
    
-    if(select ==="author"){
-    removeTextFunction(data[0].author)
-        
-    }else{
-        // if the search type is not author, update the poem title and author name normally
-        poemParagraph.textContent = poemData.lines;
-        poetName.textContent = poemData.author;
-    }
-   };  
+   
+};
 
     //store the api response data in local storage
   
@@ -64,11 +65,7 @@ function displayPoem(object) {
     poetName.textContent = object[0].author;
     poemParagraph.textContent = object[0].lines
 }
-function clearPage() {
-    poemTitle.textContent = '';
-    poetName.textContent = '';
-    poemParagraph.textContent = ''
-}
+
 
 //Add event listener to button, function passes form info to API call function
 document.getElementById("searchForm").addEventListener('submit', function(e) {
@@ -164,10 +161,61 @@ poemParagraph.addEventListener('dblclick', function(){
               poetName.textContent = "";
     
     // check if the entered input matches any author from the api response
-         
+        
  }
 
-  function getList(){
+  function getList(data){
+    var listContainer = document.createElement('ul')
+    poemParagraph.appendChild(listContainer) 
     
+    for (var i = 0; i < 10; ++i) {
+      // creating elements poem paragraph links to the poems 
+      var link = document.createElement('a')
+
+      // made listed items to make 10 titles pop up as bullet points
+      
+      var listItem =document.createElement('li')
+      link.innerHTML = data[i].title
+      listContainer.appendChild(listItem)
+      listItem.appendChild(link)
+      // added this to make links clickable 
+     link.href = "#" ;
+
+     (function(index) {
+
+     
+      // add click event listeners to each anchor tage to handle the selection
+      link.addEventListener("click", function(e) {
+        // prevent default link behavior
+        e.preventDefault();
+        populatePoem(data[index]);
+        // pass the selected poem object tho the populated function 
+      });
+      
+    })(i);
   }
+}
+  //add the populatePoem function to set the selected poem lines in the poemParagraph
+  function populatePoem(poemObject) {
+    poemTitle.textContent = poemObject.title;
+    poetName.textContent = poemObject.author;
+    poemParagraph.textContent = poemObject.lines;
+    // making back button & appending it w functionality
+    var backButton = document.createElement('button');
+    backButton.textContent = "Back";
+    // add event listener
+  backButton.addEventListener('click', function(){
+  
+   poemParagraph.textContent = "";
+   poemTitle.textContent= poemObject.author;
+   poetName.textContent= "";
+   getList(linkList)
+  });
+    // making parent element
+    poemParagraph.appendChild(backButton);
+
+
+  }
+  // add event listener
+  
  
