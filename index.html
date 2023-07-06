@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<<<<<<< HEAD
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="dist/popover.min.css" />
-
-=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
->>>>>>> main
     <link rel="stylesheet" href="./Assets/style/style.css">
 </head>
 
@@ -24,8 +20,8 @@
             <label><input type="radio" name="searchType" value="author" id="btn" ><span class="button">Poet</span> </label>
             <label><input type="radio" name="searchType" value="title" id="btn"><span class="button">Poem</span> </label>
 
-            <input type="submit" value="submit" id="submitButton">
-            <button type="button" id="randomButton">Random</button>
+            <input type="submit" class="Button" value="Submit" id="submitButton">
+            <button type="button" class="Button" id="randomButton">Random Poem</button>
         </form>
 
     </header>
@@ -35,24 +31,15 @@
         <div class="poem">
 
             <div class="titleInfo">
-                <h2 id="poemTitle">Poem Name</h2>
-                <span id="poemAuthor">- Author</span>
+                <h2 id="poemTitle"></h2>
+                <span id="poemAuthor"></span>
             </div>
             <hr>
             <div class="content-display">
-                <p id="poemParagraph">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec neque at quam luctus viverra ut
-                    convallis nisi. Nunc vel nulla et magna tempus bibendum ut sed orci. In ut mauris efficitur,
-                    hendrerit felis eget, suscipit velit. In elementum egestas purus, quis dictum ipsum faucibus non.
-                    Donec quis tortor vel elit tristique elementum consectetur sed risus. Nullam pharetra sapien luctus
-                    erat tincidunt pretium. Nulla vulputate consequat felis, non dictum sapien mattis in. Maecenas
-                    interdum turpis at leo suscipit porttitor. Praesent sed tincidunt metus. Mauris vitae ante ac neque
-                    bibendum pulvinar. Sed pharetra, nisl nec consectetur luctus, quam est aliquet dolor, quis sodales
-                    justo sapien a libero. Fusce et risus viverra, finibus felis a, imperdiet dolor.
-                </p>
+                <p id="poemParagraph"></p>
                 <!-- The Blues: A Literary Eclogue-->
                 <div class="row">
-                    <div class="col s12 m5">
+                    <div class="col">
                         <div class="card-panel grey darken-4">
                             <h6 id="card-header" class="white-text"></h6>
                             <p class="grammar white-text"></p>
@@ -69,6 +56,7 @@
 
     </main>
     <footer>
+        <p id="definition"><strong> Double click on the word within the poem to read the definition of the word</strong></p>
         <p>Definitions provided by <i><a href="https://dictionaryapi.dev/" target="_blank">dictionaryapi.dev</a></i></p>
         <p>Poetry provided by <i><a href="https://poetrydb.org/" target="_blank">poetrydb.org</a></i></p>
     </footer>
