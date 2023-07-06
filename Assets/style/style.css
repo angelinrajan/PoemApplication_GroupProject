@@ -24,17 +24,14 @@ p {
 footer {
     text-align: end;
     margin-top: 32px;
+    text-align: center;
 }
 footer > p {
     opacity: 50%;
-    position: absolute;
-    right: 0px;
+
 }
 
 /*style for header*/
-
-
-
 h1 {
   color: #333;
   font-size: 28px;
@@ -94,3 +91,22 @@ button[type="button"]:hover {
 #wordSubmitBtn {
   margin-top: 5px;
 }
+main {
+  position: relative;
+
+}
+.row {
+  position: absolute;
+  visibility:hidden;
+}
+
+#card-header {
+  border-bottom: 3px solid grey;
+  padding: 8px;
+}
+
+.grammar {
+  font-style: italic;
+}
+ 
+ 
