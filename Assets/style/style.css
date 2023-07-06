@@ -54,8 +54,8 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-button[type="submit"],
-button[type="button"] {
+
+.Button{
   background-color: #333;
   color: #fff;
   border: none;
@@ -63,11 +63,11 @@ button[type="button"] {
   padding: 10px 20px;
   margin-left: 10px;
 }
-button[type="submit"]:hover,
-button[type="button"]:hover {
+
+.Button:hover {
   background-color: #555;
 }
- 
+
 #searchForm label{
     display: inline-block;
 
@@ -102,6 +102,7 @@ button[type="button"]:hover {
   /* add padding and background color*/
   padding: 15px;
   background-color: #f8f8f8;
+  visibility: hidden;
 }
  /*makes text back */
 span {
@@ -134,4 +135,16 @@ main {
   font-style: italic;
 }
  
- 
+#definition {
+  color: rgb(1, 6, 38);
+  opacity: 90%;
+}
+#randomButton {
+  margin-left: 3%;
+}
+
+#searchInput {
+  background-color: #3535287e;
+  color: black;
+  padding-left: 5px
+}

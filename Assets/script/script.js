@@ -16,7 +16,7 @@ var textDisplay = document.querySelector('#definitionDisplay');
 var pagination_element = document.getElementById('pagination');
 let current_page = 0;
 let rows = 10;
-var linkList =[];
+var linkList = [];
 var listData = [];
 // getLocalStorage()
 
@@ -50,10 +50,15 @@ function getPoem(search, select) {
 
 
 function displayPoem(object) {
+    var linebreak = "<br>"
     poemTitle.textContent = object[0].title;
     poetName.textContent = object[0].author;
-    poemParagraph.textContent = object[0].lines
-
+    poemParagraph.innerHTML = object[0].lines.join(linebreak);
+    var pTitle = poemTitle.textContent;
+    var poetn = poetName.textContent;
+    localStorage.setItem("Poem Title", pTitle);
+    localStorage.setItem("Poet Name", poetn);
+    poemParagraph.style.visibility = "visible";
     // save the data of the first poem from the api response
 
     // check if the entered author matches any author from api
@@ -85,8 +90,6 @@ document.getElementById("searchForm").addEventListener('submit', function (e) {
 
 
 })
-
-// getPoem()
 
 
 
@@ -143,7 +146,7 @@ var getDefinition = function (word) {
 
             cardHeader.textContent = word
             wordType.textContent = data[0].meanings[0].partOfSpeech
-            
+
             span.textContent = definition;
 
         })
@@ -163,10 +166,9 @@ function randomP() {
                         // console.log(data)
                         // console.log(data[0].lines)
                         infoTest = data
-                        poemParagraph.textContent = data[0].lines
-                        poetName.textContent = data[0].author
-                        poemTitle.textContent = data[0].title
-                        localStorage.setItem("title", data[0].title)
+displayPoem(data);
+                        localStorage.setItem("Poem Title", data[0].title)
+                        localStorage.setItem("Poet Name", data[0].author)
                     });
             }
         })
@@ -178,7 +180,7 @@ function positionDefinition(e) {
     card.style.visibility = 'visible'
     card.style.left = e.offsetX + 'px'
     card.style.top = e.offsetY + 'px'
-    
+
 }
 
 //Upon doubleclicking on poem/list container, retrieve definition of highlighted word and position span relative to cursor
@@ -213,6 +215,7 @@ function getList(data) {
     //var listContainer = document.createElement('ul')
     //poemParagraph.appendChild(listContainer)
     //console.log(poemParagraph) // contains the entire container- ul, li, href of title
+    poemParagraph.style.visibility= "visible";
     for (var i = 0; i < data.length; i++) {
         // creating elements poem paragraph links to the poems 
         var link = document.createElement('a')
@@ -221,7 +224,7 @@ function getList(data) {
 
         var listItem = document.createElement('li')
         link.innerHTML = data[i].title
-       // listContainer.appendChild(listItem)
+        // listContainer.appendChild(listItem)
         listItem.appendChild(link)
         // added this to make links clickable 
         link.href = "#";
@@ -242,24 +245,24 @@ function getList(data) {
     Pagination();
 };
 //Another function, define pagination, loop though the list Data,
- function Pagination() {
+function Pagination() {
     var listContainer = document.createElement('ul')
     poemParagraph.appendChild(listContainer)
     let start = rows * current_page;
-let end = start + rows;
-console.log(listData);
-let paginatedItems = listData.slice(start, end);
-console.log(paginatedItems);
-//URLappend ul to poemparagraph
-for (let i = 0; i < paginatedItems.length; i++) {
-   // linkList, a, update textcontent, update href
-   
-    listContainer.appendChild(paginatedItems[i]);
-    
+    let end = start + rows;
+    console.log(listData);
+    let paginatedItems = listData.slice(start, end);
+    console.log(paginatedItems);
+    //URLappend ul to poemparagraph
+    for (let i = 0; i < paginatedItems.length; i++) {
+        // linkList, a, update textcontent, update href
+
+        listContainer.appendChild(paginatedItems[i]);
+
+    }
+    // generatePageButton();
 }
-// generatePageButton();
- }
- /*
+/*
 var newPage = listData.length / 10;
 var roundnewpage = Math.floor(newPage);
 
@@ -274,9 +277,9 @@ let paginatedItems = listData.slice(start, end);
 console.log(paginatedItems);
 //URLappend ul to poemparagraph
 for (let i = 0; i < paginatedItems.length; i++) {
-   // linkList, a, update textcontent, update href
-    poemParagraph.appendChild(paginatedItems);
-    
+  // linkList, a, update textcontent, update href
+   poemParagraph.appendChild(paginatedItems);
+   
 }
 */
 
@@ -351,11 +354,17 @@ function displayListPoem(items, title, rows_per_page, page) {
 
 //add the populatePoem function to set the selected poem lines in the poemParagraph
 function populatePoem(poemObject) {
+    var linebreak = "<br>";
     poemTitle.textContent = poemObject.title;
     poetName.textContent = poemObject.author;
-    poemParagraph.textContent = poemObject.lines;
+    //poemParagraph.textContent = poemObject.lines;
+    poemParagraph.innerHTML = poemObject.lines.join(linebreak);
+    localStorage.setItem("Poem Title", poemObject.title)
+    localStorage.setItem("Poet Name", poemObject.author)
     // making back button & appending it w functionality
     var backButton = document.createElement('button');
+    var linebreakelement = document.createElement('br');
+    backButton.classList.add("Button");
     backButton.textContent = "Back";
     // add event listener
     backButton.addEventListener('click', function () {
@@ -366,8 +375,44 @@ function populatePoem(poemObject) {
         getList(linkList)
     });
     // making parent element
+
+    poemParagraph.appendChild(linebreakelement);
     poemParagraph.appendChild(backButton);
 
-
 }
-// getLocalStorage()
+
+function getLocalStorage() {
+
+    var storage = localStorage.getItem("Poem Title");
+    var pstoragename = localStorage.getItem("Poet Name");
+    console.log(pstoragename)
+    if (storage) {
+        poemParagraph.style.visibility="visible"
+        var storeUrl = requestUrl + "/author,title/" + pstoragename + ";" + storage;
+        console.log(storeUrl)
+        fetch(storeUrl)
+            .then(function (response) {
+                if (response.status === 200) {
+                    return response.json()
+
+                        .then(function (data) {
+                            // if (data.status === 200) {
+                            //console.log(data[0].lines)
+                            poemTitle.textContent = data[0].title;
+                            poetName.textContent = data[0].author;
+                            poemParagraph.textContent = data[0].lines;
+                            //} else {
+                            //   console.log("no previous stored poem for display")
+                            //   return;
+                            // }
+                        });
+                }
+            })
+    } else {
+        return;
+    }
+};
+
+//poemParagraph.textContent = storage;
+
+getLocalStorage();
