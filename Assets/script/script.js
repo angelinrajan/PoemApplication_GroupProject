@@ -398,9 +398,7 @@ function getLocalStorage() {
                         .then(function (data) {
                             // if (data.status === 200) {
                             //console.log(data[0].lines)
-                            poemTitle.textContent = data[0].title;
-                            poetName.textContent = data[0].author;
-                            poemParagraph.textContent = data[0].lines;
+                            displayPoem(data)
                             //} else {
                             //   console.log("no previous stored poem for display")
                             //   return;
