@@ -370,4 +370,37 @@ function populatePoem(poemObject) {
 
 
 }
-// getLocalStorage()
+
+function getLocalStorage() {
+
+    var storage = localStorage.getItem("Poem Title");
+    var pstoragename = localStorage.getItem("Poet Name");
+    console.log(pstoragename)
+    if (storage) {
+        poemParagraph.style.visibility="visible"
+        var storeUrl = requestUrl + "/author,title/" + pstoragename + ";" + storage;
+        console.log(storeUrl)
+        fetch(storeUrl)
+            .then(function (response) {
+                if (response.status === 200) {
+                    return response.json()
+
+                        .then(function (data) {
+                            // if (data.status === 200) {
+                            //console.log(data[0].lines)
+                            displayPoem(data)
+                            //} else {
+                            //   console.log("no previous stored poem for display")
+                            //   return;
+                            // }
+                        });
+                }
+            })
+    } else {
+        return;
+    }
+};
+
+//poemParagraph.textContent = storage;
+
+getLocalStorage();
