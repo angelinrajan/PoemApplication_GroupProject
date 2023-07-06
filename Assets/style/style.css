@@ -94,3 +94,28 @@ button[type="button"]:hover {
 #wordSubmitBtn {
   margin-top: 5px;
 }
+
+
+/* apply 3d transform*/
+#poemParagraph {
+  transform: perspective(1000px)  ;
+  transform-origin: top;
+  /* add depth with shadows*/
+  box-shadow: 0px 0px 15px rgba(0, 0, 0,0.3);
+  /* add padding and background color*/
+  padding: 15px;
+  background-color: #f8f8f8;
+}
+ /*makes text back */
+span {
+  color: black;
+}
+/* chhanges color of input for radio btn before being checked */
+span.button::before {
+  background-color:white;
+  
+ }
+ [type="radio"]:checked + span:after {
+  background:black;
+  border: 2px solid rgba(239, 234, 163, 0.505);
+ }
