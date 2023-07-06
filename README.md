@@ -47,7 +47,7 @@ https://angelinrajan.github.io/PoemApplication_GroupProject/
 14. Tracked the progress and obtained the live website's URL within the Actions tab.
 15. Clicking on the provided live website link directs users to the deployed website without any errors. (See screenshot below)
 
-
+![Poem Application Live website screenshot](Assets/screenshot/angelinrajan.github.io_PoemApplication_GroupProject_.png)
 
 
 ## API used
